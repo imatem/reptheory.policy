@@ -9,6 +9,8 @@
     <!-- Include configuration for dependencies listed in setup.py -->
     <includeDependencies package="." />
 
+    <include package="z3c.jbot" file="meta.zcml" />
+
     <!-- Register the installation GenericSetup extension profile -->
     <genericsetup:registerProfile
         name="default"
@@ -18,5 +20,8 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+     <!-- Override template-->
+      <browser:jbot
+        directory="jbot" />
 
 </configure>

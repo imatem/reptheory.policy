@@ -1,10 +1,7 @@
-.. index::
-   single: History
-
 Changelog
 =========
 
-0.1 (2014-12-08)
+0.1 (unreleased)
 ----------------
 
 - Sekeleton.

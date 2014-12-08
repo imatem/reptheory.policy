@@ -4,7 +4,6 @@
 from reptheory.policy.testing import IntegrationTestCase
 # from plone.app.event.base import default_timezone
 from Products.CMFCore.utils import getToolByName
-from zope.component import getMultiAdapter
 
 import unittest2 as unittest
 
