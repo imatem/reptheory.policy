@@ -2,13 +2,14 @@
            xmlns:browser="http://namespaces.zope.org/browser"
            xmlns:plone="http://namespaces.plone.org/plone">
 
+    <include package="plone.portlets" />
     <plone:portlet
-        name="portlets.imrss"
-        interface=".imrss.IRSSPortlet"
-        assignment=".imrss.Assignment"
-        renderer=".imrss.Renderer"
-        addview=".imrss.AddForm"
-        editview=".imrss.EditForm"
+        name="portlets.activitiesrss"
+        interface=".activitiesrss.ActivitiesIRSSPortlet"
+        assignment=".activitiesrss.ActivitiesAssignment"
+        renderer=".activitiesrss.ActivitiesRenderer"
+        addview=".activitiesrss.AddForm"
+        editview=".activitiesrss.EditForm"
     />
 
 </configure>

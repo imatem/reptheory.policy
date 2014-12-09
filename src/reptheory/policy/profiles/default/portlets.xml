@@ -3,7 +3,7 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n:domain="plone">
   <portlet
-   addview="portlets.imrss"
+   addview="portlets.activitiesrss"
    title="Activities RSS Feed"
    description="A portlet which can receive and render an RSS feed."
    i18n:attributes="title;
