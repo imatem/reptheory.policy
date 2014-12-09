@@ -2,14 +2,14 @@
 <portlets
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n:domain="plone">
-<portlet
+  <portlet
    addview="portlets.imrss"
-   title="RSS Feed"
+   title="Activities RSS Feed"
    description="A portlet which can receive and render an RSS feed."
    i18n:attributes="title;
                     description"
    >
    <for interface="plone.app.portlets.interfaces.IColumn" />
    <for interface="plone.app.portlets.interfaces.IDashboard" />
- </portlet>
+  </portlet>
 </portlets>
