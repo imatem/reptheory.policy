@@ -12,4 +12,15 @@
    <for interface="plone.app.portlets.interfaces.IColumn" />
    <for interface="plone.app.portlets.interfaces.IDashboard" />
   </portlet>
+
+  <portlet
+   addview="portlets.newsrss"
+   title="News RSS Feed"
+   description="A portlet which can receive and render an RSS feed."
+   i18n:attributes="title;
+                    description"
+   >
+   <for interface="plone.app.portlets.interfaces.IColumn" />
+   <for interface="plone.app.portlets.interfaces.IDashboard" />
+  </portlet>
 </portlets>

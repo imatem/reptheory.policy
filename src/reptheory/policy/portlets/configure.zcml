@@ -12,4 +12,13 @@
         editview=".activitiesrss.EditForm"
     />
 
+    <plone:portlet
+        name="portlets.newsrss"
+        interface=".newsrss.NewsIRSSPortlet"
+        assignment=".newsrss.NewsAssignment"
+        renderer=".newsrss.NewsRenderer"
+        addview=".newsrss.AddForm"
+        editview=".newsrss.EditForm"
+    />
+
 </configure>
