@@ -17,36 +17,33 @@
         </a>
         <span class="portletTopRight"></span>
     </dt>
+
     <tal:rss tal:condition="view/feedAvailable"
                 tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
                 tal:repeat="item view/items">
-        <dd class="portletItem oddrow"
-            tal:define="oddrow repeat/item/odd"
-            tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
-
-            <a href="#"
+      <dd class="portletItem oddrow" style="border-bottom: 1px dotted #bbb;">
+      <div class="tileItem visualIEFloatFix" >
+        <img class="tileImage" width="128" tal:attributes="src python:item['url']+'/image_preview'"/>
+        <a href="#"
                 tal:attributes="href string:${item/url}"
                 class="tile">
-                <span tal:replace="item/title">
+                <h2 tal:replace="item/title">
                     Title
-                </span>
-                <span class="portletItemDetails"
-                      tal:condition="exists:item/updated">
-                      <span tal:omit-tag="" tal:content="python:toLocalizedTime(item['updated'])">19.02.2007</span>
-                </span>
+                </h2>
             </a>
-        </dd>
+        <p tal:content="item/summary |nothing"/>
+
+      </div>
+      <div class="visualClear"><!-- --></div>
+    </dd>
     </tal:rss>
+
     <dd class="portletFooter" tal:condition="view/feedAvailable">
-      <a href=""
-         tal:condition="view/siteurl"
-         tal:attributes="href view/siteurl">
-         <span class="hiddenStructure"><span tal:replace="view/title" /> - </span>
-         <span i18n:translate="box_morelink">More&hellip;</span>
-      </a>
+      <span tal:condition="view/isEmpty">
+        No hay visitantes vigentes
+      </span>
         <span class="portletBottomLeft"></span>
         <span class="portletBottomRight"></span>
     </dd>
 </dl>
-<span tal:content="view/foo"/>
 </html>

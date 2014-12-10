@@ -1,11 +1,8 @@
 from logging import getLogger
-import time
 
 import feedparser
-from plone.portlets.interfaces import IPortletDataProvider
 from zope.formlib import form
-from zope.interface import implements, Interface
-from zope import schema
+from zope.interface import implements
 
 from DateTime import DateTime
 from DateTime.interfaces import DateTimeError
@@ -63,10 +60,6 @@ class NewsRSSFeed(RSSFeed):
             'title': item.title,
             'url': link,
             'summary': item.get('description', ''),
-            # 'speaker': item.get('dc_speaker', ''),
-            # 'institution': item.get('dc_institution', ''),
-            # 'seminarytitle': item.get('dc_seminarytitle', ''),
-            # 'location': item.get('dc_location', ''),
         }
         if hasattr(item, "updated"):
             try:
@@ -97,6 +90,11 @@ class NewsRenderer(Renderer):
         if self.data.count == 0:
             return self._getFeed().items
         return self._getFeed().items[:self.data.count]
+
+    def isEmpty(self):
+        if self._getFeed().items:
+            return False
+        return True
 
 
 class AddForm(base.AddForm):
