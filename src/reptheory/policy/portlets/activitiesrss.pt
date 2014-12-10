@@ -9,13 +9,7 @@
 
     <dt class="portletHeader">
         <span class="portletTopLeft"></span>
-        <a href=""
-           tal:attributes="href view/siteurl"
-           tal:omit-tag="not:view/siteurl"
-           tal:content="view/title"
-           class="tile">
-            Tags
-        </a>
+        <h2 tal:content="view/title"/>
         <span class="portletTopRight"></span>
     </dt>
     <div tal:condition="python: not view.isEmpty()">
