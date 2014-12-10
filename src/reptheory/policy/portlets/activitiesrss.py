@@ -37,23 +37,6 @@ class ActivitiesIRSSPortlet(IRSSPortlet):
 class ActivitiesAssignment(Assignment):
     implements(ActivitiesIRSSPortlet)
 
-    # portlet_title = u''
-
-    # @property
-    # def title(self):
-    #     """return the title with RSS feed title or from URL"""
-    #     feed = FEED_DATA.get(self.data.url, None)
-    #     if feed is None:
-    #         return u'RSS: '+self.url[:20]
-    #     else:
-    #         return u'RSS: '+feed.title[:20]
-
-    # def __init__(self, portlet_title=u'', count=5, url=u"", timeout=100):
-    #     self.portlet_title = portlet_title
-    #     self.count = count
-    #     self.url = url
-    #     self.timeout = timeout
-
 
 class ActivitiesRSSFeed(RSSFeed):
 
@@ -98,9 +81,10 @@ class ActivitiesRenderer(Renderer):
             return self._getFeed().items
         return self._getFeed().items[:self.data.count]
 
-
-    def foo(self):
-        return ''
+    def isEmpty(self):
+        if self._getFeed().items:
+            return False
+        return True
 
 
 class AddForm(base.AddForm):
