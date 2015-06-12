@@ -29,6 +29,8 @@ from plone.app.portlets.portlets.rss import Renderer
 from plone.app.portlets.portlets.rss import IRSSPortlet
 from plone.app.portlets.portlets.rss import Assignment
 
+from operator import itemgetter
+
 
 class ActivitiesIRSSPortlet(IRSSPortlet):
     pass
@@ -85,6 +87,29 @@ class ActivitiesRenderer(Renderer):
         if self._getFeed().items:
             return False
         return True
+
+    def divideItemsByDate(self, items):
+
+        itemsbydate = {}
+        for item in items:
+            month = item['updated'].month()
+            year = item['updated'].year()
+            if month <= 6:
+                period = 'Enero - Junio ' + str(year)
+            else:
+                period = 'Julio - Diciembre ' + str(year)
+
+            itemsbydate.setdefault(period, [])
+            itemsbydate[period].append(item)
+        aux = [
+            (
+                k,
+                v,
+                k.split(' ')[-1],
+                k.split(' ')[0]
+            ) for k, v in itemsbydate.iteritems()]
+        aux_sorted = sorted(aux, key=itemgetter(2, 3), reverse=True)
+        return [{t[0]:t[1]} for t in aux_sorted]
 
 
 class AddForm(base.AddForm):

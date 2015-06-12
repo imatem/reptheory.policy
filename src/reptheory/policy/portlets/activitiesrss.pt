@@ -12,8 +12,10 @@
         <h2 tal:content="view/title"/>
         <span class="portletTopRight"></span>
     </dt>
-    <div tal:condition="python: not view.isEmpty()">
-      <table tal:condition="view/feedAvailable" class="listing">
+
+    <div tal:condition="python: not view.isEmpty()" tal:define="oitems view/items; ditems python:view.divideItemsByDate(oitems)">
+      <br/>
+      <table tal:condition="view/feedAvailable" class="listing" tal:define="item1 python:ditems[0]">
         <thead>
           <tr>
             <th> Título </th>
@@ -22,30 +24,67 @@
           </tr>
         </thead>
         <tbody>
-          <tal:block tal:repeat="item view/items">
-            <tr tal:define="oddrow repeat/item/odd;
-                          toLocalizedTime nocall:context/@@plone/toLocalizedTime;"
+          <tal:block tal:repeat="ite python:item1[item1.keys()[0]]">
+            <tr tal:define="oddrow repeat/ite/odd;
+              toLocalizedTime nocall:context/@@plone/toLocalizedTime;"
               tal:attributes="class python:oddrow and 'odd' or 'even'">
               <td>
-                <a href="#"
-                    tal:attributes="href string:${item/url}">
-                    <span tal:replace="item/title">
-                        Title
-                    </span>
+                <a href="#" tal:attributes="href string:${ite/url}">
+                  <span tal:replace="ite/title"> Title </span>
                 </a>
-                    <br/>
-                    <b><span tal:content="item/speaker |nothing"/></b>
+                <br/>
+                <b><span tal:content="ite/speaker |nothing"/></b>
               </td>
-              <td tal:content="item/location | nothing"/>
+              <td tal:content="ite/location | nothing"/>
               <td>
-                <span  tal:condition="exists:item/updated"
+                <span  tal:condition="exists:ite/updated"
                   tal:omit-tag=""
-                  tal:content="python:toLocalizedTime(item['updated'])">19.02.2007</span>
+                  tal:content="python:toLocalizedTime(ite['updated'])">19.02.2007</span>
               </td>
             </tr>
           </tal:block>
         </tbody>
-      </table>
+      </table><!-- End table -->
+
+      <tal:block tal:repeat="item python:ditems[1:]">
+        <dl class="collapsible collapsedOnLoad">
+          <dt class="collapsibleHeader">
+            <span tal:content="python:item.keys()[0]"/>
+          </dt>
+          <dd class="collapsibleContent">
+            <table tal:condition="view/feedAvailable" class="listing">
+              <thead>
+                <tr>
+                  <th> Título </th>
+                  <th> Lugar </th>
+                  <th> Fecha </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tal:block tal:repeat="ite python:item[item.keys()[0]]">
+                  <tr tal:define="oddrow repeat/ite/odd;
+                    toLocalizedTime nocall:context/@@plone/toLocalizedTime;"
+                    tal:attributes="class python:oddrow and 'odd' or 'even'">
+                    <td>
+                      <a href="#" tal:attributes="href string:${ite/url}">
+                        <span tal:replace="ite/title"> Title </span>
+                      </a>
+                      <br/>
+                      <b><span tal:content="ite/speaker |nothing"/></b>
+                    </td>
+                    <td tal:content="ite/location | nothing"/>
+                    <td>
+                      <span  tal:condition="exists:ite/updated"
+                        tal:omit-tag=""
+                        tal:content="python:toLocalizedTime(ite['updated'])">19.02.2007</span>
+                    </td>
+                  </tr>
+                </tal:block>
+              </tbody>
+            </table><!-- End table -->
+          </dd>
+        </dl>
+      </tal:block>
     </div>
 
     <dd class="portletFooter" tal:condition="view/feedAvailable">
