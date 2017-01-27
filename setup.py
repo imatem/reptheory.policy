@@ -41,6 +41,7 @@ setup(
         'Pillow',
         'Plone',
         'setuptools',
+        'collective.mathjax',
         'Products.ContentWellPortlets',
         'z3c.jbot',
     ],
