@@ -17,7 +17,7 @@
                 tal:repeat="item view/items">
       <dd class="portletItem oddrow" style="border-bottom: 1px dotted #bbb;">
       <div class="tileItem visualIEFloatFix" >
-        <img class="tileImage" width="128" tal:attributes="src python:item['url']+'/image_preview'"/>
+        <!-- <img class="tileImage" width="128" tal:attributes="src python:item['url']+'/image_preview'"/> -->
         <a href="#"
                 tal:attributes="href string:${item/url}"
                 class="tile">
